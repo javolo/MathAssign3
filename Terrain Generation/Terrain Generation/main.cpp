@@ -42,7 +42,7 @@
 
 using namespace std;
 
-// Declaration of variables
+// Declaration of variables when we import a matrix manually input to generate a heightmap
 int M[9][9] = {
 	{ 1,1, 1, 1, 1,1,1,1,1},
 	{ 1,1, 1, 1, 1,1,1,1,1 },
@@ -69,54 +69,6 @@ void initNormalVector(int width, int height) {
 	}
 }
 
-// Function to calculate the normals of the vertices
-void calculateNormalsMatrix() {
-
-	for (int z = 0; z < imageHeight; z++) {
-		for (int x = 0; x < imageWidth; x++) {
-			Vec3f sum(0.0f, 0.0f, 0.0f);
-
-			Vec3f out;
-			if (z > 0) {
-				out = Vec3f(0.0f, M[z - 1][x] - M[z][x], -1.0f);
-			}
-			Vec3f in;
-			if (z < imageHeight - 1) {
-				in = Vec3f(0.0f, M[z + 1][x] - M[z][x], 1.0f);
-			}
-			Vec3f left;
-			if (x > 0) {
-				left = Vec3f(-1.0f, M[z][x - 1] - M[z][x], 0.0f);
-			}
-			Vec3f right;
-			if (x < imageWidth - 1) {
-				right = Vec3f(1.0f, M[z][x + 1] - M[z][x], 0.0f);
-			}
-
-			if (x > 0 && z > 0) {
-				sum += out.cross(left).normalize();
-			}
-			if (x > 0 && z < imageHeight - 1) {
-				sum += left.cross(in).normalize();
-			}
-			if (x < imageWidth - 1 && z < imageHeight - 1) {
-				sum += in.cross(right).normalize();
-			}
-			if (x < imageWidth - 1 && z > 0) {
-				sum += right.cross(out).normalize();
-			}
-
-			normalsVector[z][x] = sum;
-		}
-	}
-}
-
-//Returns the normal at (x, z)
-//Vec3f getNormal(int x, int z) {
-//	return normalsVector[z][x];
-//}
-
-
 // Function to generate the heightmap from the perlin noise module 
 terrain* generateNoiseTerrain() {
 
@@ -134,7 +86,8 @@ terrain* generateNoiseTerrain() {
 	return t;
 }
 
-
+// Method called in the draw scene to generate the terrain with the Diamond Square
+// Algorithm
 terrain* generateDiamondSquareTerrain() {
 
 	// The terrain has to be power of two so let´s set up the step
@@ -143,7 +96,7 @@ terrain* generateDiamondSquareTerrain() {
 	int length = pow(2, step);
 
 	// Sample size and featured size variables
-	int samplesize = 16;
+	int samplesize = 4;
 	double scale = 0.5;
 
 	// Generate the terrain with the heigth set to 0
@@ -168,10 +121,6 @@ terrain* generateDiamondSquareTerrain() {
 	t->computeNormals();
 	return t;
 }
-
-
-
-
 
 //Loads a terrain from a heightmap.  The heights of the terrain range from
 //-height / 2 to height / 2.
@@ -227,6 +176,7 @@ void handleResize(int w, int h) {
 	gluPerspective(45.0, (double)w / (double)h, 1.0, 200.0);
 }
 
+// Render function with Triangle Strips
 void drawScene() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -270,7 +220,7 @@ void drawScene() {
 			// Set the normal second triangle
 			Vec3f normal = _terrain->getNormal(x + 1, z);
 			glNormal3f(normal[0], normal[1], normal[2]);
-			// draw vertex 1 (B)
+			// draw vertex 1 (B) 
 			glVertex3f(x + 1, _terrain->getHeight(x + 1, z), z);
 
 			// Set the normal of the first triangle
@@ -312,8 +262,13 @@ int main(int argc, char** argv) {
 	initNormalVector(imageWidth, imageHeight);
 	calculateNormalsMatrix();*/
 
+	// Loading a terrain with a bitmap
 	//_terrain = loadTerrain("firstheightmap.bmp", 20);
+
+	// Generate a terrain with Perlin Noise Function
 	//_terrain = generateNoiseTerrain();
+
+	// Generate a terrain with Diamond Square Algorithm
 	_terrain = generateDiamondSquareTerrain();
 
 	glutDisplayFunc(drawScene);
