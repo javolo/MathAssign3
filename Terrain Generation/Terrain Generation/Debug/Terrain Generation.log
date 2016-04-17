@@ -1,0 +1,15 @@
+﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(368,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
+  main.cpp
+c:\users\javoo\onedrive\documentos\github\mathassign3\terrain generation\terrain generation\main.cpp(81): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\javoo\onedrive\documentos\github\mathassign3\terrain generation\terrain generation\main.cpp(85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\javoo\onedrive\documentos\github\mathassign3\terrain generation\terrain generation\main.cpp(89): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\javoo\onedrive\documentos\github\mathassign3\terrain generation\terrain generation\main.cpp(93): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\javoo\onedrive\documentos\github\mathassign3\terrain generation\terrain generation\main.cpp(129): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\javoo\onedrive\documentos\github\mathassign3\terrain generation\terrain generation\main.cpp(130): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\javoo\onedrive\documentos\github\mathassign3\terrain generation\terrain generation\main.cpp(142): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+c:\users\javoo\onedrive\documentos\github\mathassign3\terrain generation\terrain generation\main.cpp(143): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+c:\users\javoo\onedrive\documentos\github\mathassign3\terrain generation\terrain generation\main.cpp(267): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+c:\users\javoo\onedrive\documentos\github\mathassign3\terrain generation\terrain generation\main.cpp(269): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+c:\users\javoo\onedrive\documentos\github\mathassign3\terrain generation\terrain generation\main.cpp(274): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+c:\users\javoo\onedrive\documentos\github\mathassign3\terrain generation\terrain generation\main.cpp(280): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+  Terrain Generation.vcxproj -> C:\Users\javoo\OneDrive\Documentos\GitHub\MathAssign3\Terrain Generation\Terrain Generation\..\..\Bin\Terrain Generation.exe
